@@ -2,10 +2,18 @@
   <div
     class="ProductPrice is-flex is-flex-direction-column is-justify-content-center"
   >
-    <span class="ProductPrice-withoutTax"><b>565,00 kr</b></span>
-    <span class="ProductPrice-withTax">670 kr</span>
+    <span class="ProductPrice-withoutTax"
+      ><b>{{ price }},00 kr</b></span
+    >
+    <span class="ProductPrice-withTax">{{ priceWithTax }},00 kr</span>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["price", "priceWithTax"],
+};
+</script>
 
 <style lang="scss" scoped>
 .ProductPrice {

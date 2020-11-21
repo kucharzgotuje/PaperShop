@@ -60,11 +60,19 @@ export default {
 .ProductGallery {
   .ProductGallery-choosenImage {
     cursor: pointer;
+    img {
+      width: 100%;
+    }
   }
   .ProductGallery-imageSelector {
     img {
       cursor: pointer;
-      height: 68px;
+      height: auto;
+      max-width: 30%;
+
+      @media screen and (min-width: 1020px) {
+        height: 68px;
+      }
     }
   }
 }

@@ -2,12 +2,35 @@
   <div class="BasketIcon">
     <button class="BasketIcon-button">
       <i class="fas fa-shopping-basket fa-2x"></i>
-      <div class="BasketIcon-amountIndicator">2</div>
+      <div class="BasketIcon-amountIndicator">{{ amountInBasket }}</div>
     </button>
-    <span class="BasketIcon-total">596,00kr</span>
+    <span class="BasketIcon-total">{{ totalPrice }},00kr</span>
   </div>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      amountInBasket: 0,
+      totalPrice: 0,
+    };
+  },
+  computed: {
+    itemsInBasket() {
+      return this.$store.state.basket.itemsInBasket;
+    },
+  },
+  watch: {
+    itemsInBasket(newValue, oldValue) {
+      this.amountInBasket = this.itemsInBasket.length;
+      this.totalPrice = this.itemsInBasket.reduce(
+        (prevValue, nextValue) => prevValue + nextValue.price,
+        0
+      );
+    },
+  },
+};
+</script>
 <style lang="scss" scoped>
 .BasketIcon {
   display: flex;

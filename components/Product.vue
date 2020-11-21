@@ -1,26 +1,31 @@
 <template>
   <div class="Product">
     <div class="Product-main">
-      <div class="Product-gallery">
-        <ProductGallery />
-      </div>
+      <ProductGallery v-if="!isMobile" />
       <div class="Product-details is-flex is-flex-direction-column">
         <h2 class="Product-title">Paper</h2>
         <div
           class="Product-toBasket is-flex is-flex-direction-row is-justify-content-space-between"
         >
-          <ProductPrice />
+          <ProductPrice
+            :price="product.price"
+            :priceWithTax="product.priceWithTax"
+          />
           <VariantSelect />
           <div class="Product-button">
-            <button class="Button button is-crimson is-light">
+            <button
+              @click="addToBasket()"
+              class="Button button is-crimson is-light"
+            >
               Add to basket
             </button>
           </div>
         </div>
+        <ProductGallery v-if="isMobile" />
         <ProductDescription />
       </div>
     </div>
-    <div class="ProductColumns columns is-mobile">
+    <div class="ProductColumns columns">
       <div class="ProductColumn column is-full-mobile">
         <h3 class="ProductColumn-header">Paper is awesome!</h3>
         <p class="ProductColumn-paragraph">
@@ -50,11 +55,36 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      product: {
+        price: 565,
+        priceWithTax: 670,
+      },
+    };
+  },
+  computed: {
+    isMobile() {
+      return this.$store.state.isMobile.isMobile;
+    },
+  },
+  methods: {
+    addToBasket() {
+      this.$store.commit("basket/addToBasket", this.product);
+    },
+  },
+};
+</script>
+
 <style lang="scss" scoped>
-.Product-main {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 16px;
+@media screen and (min-width: 1020px) {
+  .Product-main {
+    display: grid;
+    grid-gap: 16px;
+    grid-template-columns: 1fr 2fr;
+  }
 }
 .Product-toBasket {
   padding: 8px 0;

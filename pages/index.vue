@@ -3,14 +3,15 @@
     <section class="section">
       <header class="Header">
         <div class="HeaderTop">
+          <Hamburger v-if="isMobile" />
           <h1 class="SiteHeader title">
             <Logo />
           </h1>
-          <SearchBar />
+          <SearchBar v-if="!isMobile" />
           <BasketIcon />
-          <CheckoutButton />
+          <CheckoutButton v-if="!isMobile" />
         </div>
-        <TopNavigation />
+        <TopNavigation v-if="!isMobile" />
       </header>
     </section>
 
@@ -26,15 +27,39 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isMobile: false,
+    };
+  },
+  mounted() {
+    this.setIsMobile(window.outerWidth);
+    window.addEventListener("resize", (event) =>
+      this.setIsMobile(event.currentTarget.outerWidth)
+    );
+  },
+  methods: {
+    setIsMobile(windowWidth) {
+      this.isMobile = windowWidth < 820;
+      this.$store.commit("isMobile/setIsMobileFlag", this.isMobile);
+    },
+  },
+};
 </script>
 
 <style lang="scss">
 .Main {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 16px;
+  display: flex;
+  flex-direction: column-reverse;
+
+  @media screen and (min-width: 820px) {
+    display: grid;
+    grid-gap: 16px;
+    grid-template-columns: 1fr 3fr;
+  }
 }
+
 .MainSection.section {
   padding-top: 0;
   padding-bottom: 0;
