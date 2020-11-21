@@ -75,6 +75,32 @@ export default {
       this.$store.commit("basket/addToBasket", this.product);
     },
   },
+  head: {
+    title: "Paper - OfficeSupplies online shop",
+    meta: [
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "" },
+    ],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    script: [
+      {
+        hid: "stripe",
+        src: "https://kit.fontawesome.com/c7e908580e.js",
+        defer: true,
+      },
+      {
+        type: "application/ld+json",
+        src: JSON.stringify({
+          "@context": "http://www.schema.org",
+          "@type": "Store",
+          name: "Paper",
+          description:
+            "Cool paper that you can write on and show it to your family and Friends! ",
+        }),
+      },
+    ],
+  },
 };
 </script>
 
