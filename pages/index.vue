@@ -1,37 +1,45 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        paper-shop
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+    <section class="section">
+      <header class="Header">
+        <div class="HeaderTop">
+          <h1 class="SiteHeader title">
+            <Logo />
+          </h1>
+          <SearchBar />
+          <BasketIcon />
+          <CheckoutButton />
+        </div>
+        <TopNavigation />
+      </header>
+    </section>
+
+    <section class="MainSection section">
+      <main class="Main">
+        <LeftColumn class="LeftColumn" />
+        <Product class="is-flex-grow-1" />
+      </main>
+    </section>
+
+    <Footer />
   </div>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
-<style>
+<style lang="scss">
+.Main {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 16px;
+}
+.MainSection.section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -42,16 +50,8 @@ export default {}
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
@@ -69,5 +69,21 @@ export default {}
 
 .links {
   padding-top: 15px;
+}
+
+.Header {
+  display: flex;
+  flex-direction: column;
+}
+
+.HeaderTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .SiteHeader.title {
+    margin-bottom: 0;
+  }
 }
 </style>
