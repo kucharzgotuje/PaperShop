@@ -20,6 +20,13 @@ export default {
       return this.$store.state.basket.itemsInBasket;
     },
   },
+  mounted() {
+    this.amountInBasket = this.itemsInBasket.length;
+    this.totalPrice = this.itemsInBasket.reduce(
+      (prevValue, nextValue) => prevValue + nextValue.price,
+      0
+    );
+  },
   watch: {
     itemsInBasket(newValue, oldValue) {
       this.amountInBasket = this.itemsInBasket.length;
@@ -34,6 +41,11 @@ export default {
 <style lang="scss" scoped>
 .BasketIcon {
   display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 1020px) {
+    flex-direction: row;
+  }
 }
 .BasketIcon-button {
   position: relative;
@@ -48,13 +60,18 @@ export default {
   width: 16px;
   height: 16px;
   font-size: 11px;
-  top: -6px;
-  right: -6px;
+  top: 0;
+  right: 12px;
   font-weight: bold;
   color: white;
+
+  @media screen and (min-width: 1020px) {
+    top: -6px;
+    right: -6px;
+  }
 }
 
 .BasketIcon-total {
-  margin: 8px;
+  margin: 0 8px;
 }
 </style>

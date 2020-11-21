@@ -9,12 +9,13 @@
 
 <style lang="scss" scoped>
 .Logo.image {
-  max-width: 220px;
+  max-width: 160px;
   padding-right: 8px;
   padding-left: 8px;
 
   @media screen and (min-width: 820px) {
     padding-left: 0;
+    max-width: 220px;
   }
 }
 </style>

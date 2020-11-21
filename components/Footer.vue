@@ -16,7 +16,7 @@
             odio.
           </p>
         </div>
-        <div class="FooterColumn column is-half-mobile">
+        <div class="FooterColumn column is-one-third-mobile">
           <h3>Bestsellers</h3>
           <div class="is-flex is-flex-direction-row">
             <ul>
@@ -33,7 +33,7 @@
             </ul>
           </div>
         </div>
-        <div class="FooterColumn column">
+        <div class="FooterColumn column is-one-third-mobile">
           <h3>We're social!</h3>
           <div class="is-flex is-flex-direction-row">
             <ul>
@@ -52,5 +52,8 @@
 .Footer {
   margin-top: auto;
   margin-bottom: 0;
+}
+.FooterLinks {
+  margin-top: 20px;
 }
 </style>

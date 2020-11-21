@@ -23,7 +23,7 @@
       nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate,
       felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
     </p>
-    <button @click="toggleIsExpanded">{{isExpanded ? 'Read less' : 'Read more'}}</button>
+    <span class="ProductDescription-expand" @click="toggleIsExpanded">{{isExpanded ? 'Read less' : 'Read more'}}</span>
   </div>
 </template>
 
@@ -44,8 +44,14 @@ export default {
 
 <style lang="scss" scoped>
 .ProductDescription {
+  margin: 22px 0;
+
   .ProductDescription-paragraph {
     font-size: 14px;
+  }
+
+  .ProductDescription-expand {
+    text-decoration: underline;
   }
 }
 </style>
